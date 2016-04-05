@@ -7,11 +7,6 @@ import collections
 from objectpath import *
 from os import path
 from pyparsing import Word, Optional, ParseException, printables, nums, restOfLine
-from enum import Enum
-
-
-class ExperimentType(Enum):
-    FOUR_PHASE_FS_SIMULATION, THREE_PHASE_SE_SIMULATION = range(2)
 
 
 class ExperimentResults:
