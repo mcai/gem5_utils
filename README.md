@@ -1,7 +1,7 @@
 ## README
 
 ### Introduction
-gem5_utils is a single Python3 script to automate your daily tasks during gem5 related development and/or research, including running experiments, collecting configurations and statistics from experiment runs, and exporting experiment results as CSV files and figures.
+gem5_utils is a single [Python3](http://www.python.org/) script to automate your daily tasks during [gem5](http://www.gem5.org/) related development and/or research, including running experiments, collecting configurations and statistics from experiment runs, and exporting experiment results as CSV files and figures.
 
 ### Prerequisites
 Below is the packages required to install on Ubuntu Linux 15.10. Other environments could be configured in a similar way.
@@ -11,7 +11,9 @@ Below is the packages required to install on Ubuntu Linux 15.10. Other environme
 `pip3 install objectpath pyparsing flufl pytz` 
 
 ### Usage
-See `main.py` for example usage. Set up the parameters accordingly, then run the script by executing `./run.sh` in the command line.
+`gem5_utils.py` is the only Python3 script where gem5_utils resides.
+
+See `test_gem5_utils.py` for example usage. You can setup parameters accordingly, then run `./test_gem5_utils.sh` in the command line.
 
 ### Contact the Author
 Please reports any bugs and problems of gem5_utils to min.cai.china@bjut.edu.cn.
