@@ -7,6 +7,9 @@ import collections
 from objectpath import *
 from os import path
 from pyparsing import Word, Optional, ParseException, printables, nums, restOfLine
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
 
 
 class ExperimentResults:
@@ -87,3 +90,29 @@ def to_csv(output_file_name, results, fields):
 
         for result in results:
             writer.writerow([field[1](result) for field in fields])
+
+
+def generate_plot(csv_file_name, plot_file_name, x, y, hue, y_title):
+    sns.set(font_scale=1.5)
+
+    sns.set_style("white", {"legend.frameon": True})
+
+    df = pd.read_csv(csv_file_name)
+
+    ax = sns.barplot(data=df, x=x, y=y, hue=hue, palette=sns.color_palette("Paired"))
+    ax.set_xlabel('')
+    ax.set_ylabel(y_title)
+
+    labels = ax.get_xticklabels()
+    ax.set_xticklabels(labels, rotation=45)
+
+    legend = ax.legend()
+    legend.set_label('')
+
+    fig = ax.get_figure()
+    fig.tight_layout()
+    fig.savefig(plot_file_name)
+    fig.savefig(plot_file_name + '.jpg')
+
+    plt.clf()
+    plt.close('all')

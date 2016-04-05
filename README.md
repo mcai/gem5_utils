@@ -6,14 +6,14 @@ gem5_utils is a single [Python3](http://www.python.org/) script to automate your
 ### Prerequisites
 Below is the packages required to install on Ubuntu Linux 15.10. Other environments could be configured in a similar way.
 
-`sudo apt-get install python3-pip`
+`sudo apt-get install python3-pip liblapack-dev libblas-dev gfortran`
 
 `pip3 install objectpath pyparsing pytz` 
 
 ### Usage
 `gem5_utils.py` is the only Python3 script where gem5_utils resides.
 
-See `test_gem5_utils.py` for example usage. You can setup parameters accordingly, then run `./test_gem5_utils.sh` in the command line.
+See `test_gem5_utils.py` and the `test_data` folder for example usage. You can setup parameters accordingly, then run `./test_gem5_utils.sh` in the command line.
 
 ### Contact the Author
 Please reports any bugs and problems of gem5_utils to min.cai.china@bjut.edu.cn.
