@@ -8,7 +8,7 @@ Below is the packages required to install on Ubuntu Linux 15.10. Other environme
 
 `sudo apt-get install python3-pip`
 
-`pip3 install objectpath pyparsing flufl pytz` 
+`pip3 install objectpath pyparsing pytz` 
 
 ### Usage
 `gem5_utils.py` is the only Python3 script where gem5_utils resides.
