@@ -10,8 +10,8 @@ import os
 import multiprocessing as mp
 
 
-def run(bench, input_set, l2_size, l2_assoc, l2_tags, num_threads):
-    dir = 'results/alpha_no_checkpoints/' + bench + '/' + input_set + '/' + l2_size + '/' + str(l2_assoc) + 'way/' + l2_tags + '/' + str(num_threads) + 'c/'
+def run(bench, input_set, l2_size, l2_assoc, num_threads):
+    dir = 'results/' + bench + '/' + input_set + '/' + l2_size + '/' + str(l2_assoc) + 'way/' + str(num_threads) + 'c/'
 
     os.system('rm -fr ' + dir)
     os.system('mkdir -p ' + dir)
@@ -20,14 +20,14 @@ def run(bench, input_set, l2_size, l2_assoc, l2_tags, num_threads):
               + str(num_threads) + ' --script=ext/parsec/2.1/run_scripts/' \
               + bench + '_' + str(num_threads) + 'c_' + input_set + '.rcS' \
               + ' --caches --l2cache --num-l2caches=1' \
-              + ' --l1d_size=32kB --l1i_size=32kB --l2_size=' + l2_size + ' --l2_assoc=' + str(l2_assoc) + ' --l2_tags=' + l2_tags
+              + ' --l1d_size=32kB --l1i_size=32kB --l2_size=' + l2_size + ' --l2_assoc=' + str(l2_assoc)
     print(cmd_run)
     os.system(cmd_run)
 
 
 def run_as_task(task):
-    bench, input_set, l2_size, l2_assoc, l2_tags, num_threads = task
-    run(bench, input_set, l2_size, l2_assoc, l2_tags, num_threads)
+    bench, input_set, l2_size, l2_assoc, num_threads = task
+    run(bench, input_set, l2_size, l2_assoc, num_threads)
 
 tasks = []
 
@@ -41,33 +41,20 @@ def run_experiments():
     pool.join()
 
 
-def add_task(bench, input_set, l2_size, l2_assoc, l2_tags, num_threads):
-    task = bench, input_set, l2_size, l2_assoc, l2_tags, num_threads
+def add_task(bench, input_set, l2_size, l2_assoc, num_threads):
+    task = bench, input_set, l2_size, l2_assoc, num_threads
     tasks.append(task)
 
-# input_sets = ['simsmall', 'simmedium', 'simlarge']
 input_sets = ['simsmall']
-# input_sets = ['simmedium']
-# input_sets = ['simlarge']
 
 
 def add_tasks(bench, input_set):
-    add_task(bench, input_set, '256kB', 8, 'LRU', 4)
-
-    # add_task(bench, input_set, '512kB', 8, 'LRU', 4)
-    # add_task(bench, input_set, '1MB', 8, 'LRU', 4)
-    # add_task(bench, input_set, '2MB', 8, 'LRU', 4)
-    # add_task(bench, input_set, '4MB', 8, 'LRU', 4)
-    # add_task(bench, input_set, '8MB', 8, 'LRU', 4)
-    #
-    # add_task(bench, input_set, '256kB', 8, 'LRU', 1)
-    # add_task(bench, input_set, '256kB', 8, 'LRU', 2)
-    # add_task(bench, input_set, '256kB', 8, 'LRU', 8)
-    # add_task(bench, input_set, '256kB', 8, 'LRU', 16)
-    #
-    # add_task(bench, input_set, '256kB', 8, 'IbRDP', 4)
-    # add_task(bench, input_set, '256kB', 8, 'RRIP', 4)
-    # add_task(bench, input_set, '256kB', 8, 'DBRSP', 4)
+    add_task(bench, input_set, '256kB', 8, 4)
+    add_task(bench, input_set, '512kB', 8, 4)
+    add_task(bench, input_set, '1MB', 8, 4)
+    add_task(bench, input_set, '2MB', 8, 4)
+    add_task(bench, input_set, '4MB', 8, 4)
+    add_task(bench, input_set, '8MB', 8, 4)
 
 for input_set in input_sets:
     add_tasks('blackscholes', input_set)
