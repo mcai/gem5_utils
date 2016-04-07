@@ -6,7 +6,7 @@ gem5_utils is a single [Python3](http://www.python.org/) script to automate your
 ### Prerequisites
 Below is the packages required to install on Ubuntu Linux 15.10. Other environments could be configured in a similar way.
 
-`sudo apt-get install python3-pip liblapack-dev libblas-dev gfortran`
+`sudo apt-get install python3-pip python3-matplotlib python3-pandas python3-seaborn`
 
 `pip3 install objectpath pyparsing pytz` 
 
