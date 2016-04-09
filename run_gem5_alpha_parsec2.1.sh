@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 cd ../gem5
-scons build/ALPHA_MESI_Two_Level/gem5.opt -j4
+python3 ./run_gem5_alpha_parsec2.1.py
 cd ../gem5_utils
