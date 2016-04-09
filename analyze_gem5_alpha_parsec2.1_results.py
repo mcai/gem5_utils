@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from gem5_utils import parse_result, to_csv, generate_plot
 
 # Define benchmark names.
