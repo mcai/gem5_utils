@@ -24,7 +24,7 @@ def parse_results_l2_sizes():
 
     for benchmark in benchmarks:
         # for l2_size in ['256kB', '512kB', '1MB', '2MB', '4MB', '8MB']:
-        for l2_size in ['256kB']:
+        for l2_size in ['256kB', '512kB']:
             results.append(
                 parse_result('results/' +
                              benchmark + '/simsmall/' + l2_size + '/8way/4c/',

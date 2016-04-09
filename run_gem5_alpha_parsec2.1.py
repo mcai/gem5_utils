@@ -49,8 +49,8 @@ input_sets = ['simsmall']
 
 
 def add_tasks(bench, input_set):
-    add_task(bench, input_set, '256kB', 8, 4)
-    # add_task(bench, input_set, '512kB', 8, 4)
+    # add_task(bench, input_set, '256kB', 8, 4)
+    add_task(bench, input_set, '512kB', 8, 4)
     # add_task(bench, input_set, '1MB', 8, 4)
     # add_task(bench, input_set, '2MB', 8, 4)
     # add_task(bench, input_set, '4MB', 8, 4)
