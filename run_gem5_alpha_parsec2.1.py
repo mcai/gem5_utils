@@ -49,18 +49,18 @@ input_sets = ['simsmall']
 
 
 def add_tasks(bench, input_set):
-    # add_task(bench, input_set, '256kB', 8, 4)
+    add_task(bench, input_set, '256kB', 8, 4)
     add_task(bench, input_set, '512kB', 8, 4)
-    # add_task(bench, input_set, '1MB', 8, 4)
-    # add_task(bench, input_set, '2MB', 8, 4)
-    # add_task(bench, input_set, '4MB', 8, 4)
-    # add_task(bench, input_set, '8MB', 8, 4)
+    add_task(bench, input_set, '1MB', 8, 4)
+    add_task(bench, input_set, '2MB', 8, 4)
+    add_task(bench, input_set, '4MB', 8, 4)
+    add_task(bench, input_set, '8MB', 8, 4)
 
 for input_set in input_sets:
     add_tasks('blackscholes', input_set)
-    # add_tasks('bodytrack', input_set)
-    # add_tasks('canneal', input_set)
-    # add_tasks('dedup', input_set)
+    add_tasks('bodytrack', input_set)
+    add_tasks('canneal', input_set)
+    add_tasks('dedup', input_set)
     # add_tasks('facesim', input_set)
     # add_tasks('ferret', input_set)
     # add_tasks('fluidanimate', input_set)
