@@ -92,7 +92,7 @@ def to_csv(output_file_name, results, fields):
             writer.writerow([field[1](result) for field in fields])
 
 
-def generate_plot(csv_file_name, plot_file_name, x, y, hue, y_title):
+def generate_plot(csv_file_name, plot_file_name, x, y, hue, y_title, xticklabels_rotation=90):
     sns.set(font_scale=1.5)
 
     sns.set_style("white", {"legend.frameon": True})
@@ -104,10 +104,11 @@ def generate_plot(csv_file_name, plot_file_name, x, y, hue, y_title):
     ax.set_ylabel(y_title)
 
     labels = ax.get_xticklabels()
-    ax.set_xticklabels(labels, rotation=45)
+    ax.set_xticklabels(labels, rotation=xticklabels_rotation)
 
-    legend = ax.legend()
-    legend.set_label('')
+    if hue:
+        legend = ax.legend()
+        legend.set_label('')
 
     fig = ax.get_figure()
     fig.tight_layout()
