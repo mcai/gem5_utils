@@ -25,42 +25,42 @@ def run(bench, input_set, l2_size, l2_assoc, num_threads):
     os.system(cmd_run)
 
 
-def run_as_task(task):
-    bench, input_set, l2_size, l2_assoc, num_threads = task
+def run_experiment(args):
+    bench, input_set, l2_size, l2_assoc, num_threads = args
     run(bench, input_set, l2_size, l2_assoc, num_threads)
 
-tasks = []
+experiments = []
 
 
 def run_experiments():
     num_processes = mp.cpu_count()
     pool = mp.Pool(num_processes)
-    pool.map(run_as_task, tasks)
+    pool.map(run_experiment, experiments)
 
     pool.close()
     pool.join()
 
 
-def add_task(bench, input_set, l2_size, l2_assoc, num_threads):
-    task = bench, input_set, l2_size, l2_assoc, num_threads
-    tasks.append(task)
+def add_experiment(bench, input_set, l2_size, l2_assoc, num_threads):
+    args = bench, input_set, l2_size, l2_assoc, num_threads
+    experiments.append(args)
 
 input_sets = ['simsmall']
 
 
-def add_tasks(bench, input_set):
-    add_task(bench, input_set, '256kB', 8, 4)
-    add_task(bench, input_set, '512kB', 8, 4)
-    add_task(bench, input_set, '1MB', 8, 4)
-    add_task(bench, input_set, '2MB', 8, 4)
-    add_task(bench, input_set, '4MB', 8, 4)
-    add_task(bench, input_set, '8MB', 8, 4)
+def add_experiments(bench, input_set):
+    add_experiment(bench, input_set, '256kB', 8, 4)
+    add_experiment(bench, input_set, '512kB', 8, 4)
+    add_experiment(bench, input_set, '1MB', 8, 4)
+    add_experiment(bench, input_set, '2MB', 8, 4)
+    add_experiment(bench, input_set, '4MB', 8, 4)
+    add_experiment(bench, input_set, '8MB', 8, 4)
 
 for input_set in input_sets:
-    add_tasks('blackscholes', input_set)
-    add_tasks('bodytrack', input_set)
-    add_tasks('canneal', input_set)
-    add_tasks('dedup', input_set)
+    add_experiments('blackscholes', input_set)
+    add_experiments('bodytrack', input_set)
+    add_experiments('canneal', input_set)
+    add_experiments('dedup', input_set)
     # add_tasks('facesim', input_set)
     # add_tasks('ferret', input_set)
     # add_tasks('fluidanimate', input_set)
