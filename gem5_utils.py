@@ -106,19 +106,17 @@ def generate_plot(csv_file_name, plot_file_name, x, y, hue, y_title, xticklabels
     labels = ax.get_xticklabels()
     ax.set_xticklabels(labels, rotation=xticklabels_rotation)
 
-    legend = None
+    fig = ax.get_figure()
 
     if hue:
         legend = ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
         legend.set_label('')
 
-    fig = ax.get_figure()
-
-    if legend:
         fig.savefig(plot_file_name, bbox_extra_artists=(legend,), bbox_inches='tight')
         fig.savefig(plot_file_name + '.jpg', bbox_extra_artists=(legend,), bbox_inches='tight')
     else:
         fig.tight_layout()
+
         fig.savefig(plot_file_name)
         fig.savefig(plot_file_name + '.jpg')
 
