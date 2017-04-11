@@ -50,17 +50,17 @@ input_sets = ['simsmall']
 
 def add_experiments(bench, input_set):
     add_experiment(bench, input_set, '256kB', 8, 4)
-    add_experiment(bench, input_set, '512kB', 8, 4)
-    add_experiment(bench, input_set, '1MB', 8, 4)
-    add_experiment(bench, input_set, '2MB', 8, 4)
-    add_experiment(bench, input_set, '4MB', 8, 4)
-    add_experiment(bench, input_set, '8MB', 8, 4)
+    # add_experiment(bench, input_set, '512kB', 8, 4)
+    # add_experiment(bench, input_set, '1MB', 8, 4)
+    # add_experiment(bench, input_set, '2MB', 8, 4)
+    # add_experiment(bench, input_set, '4MB', 8, 4)
+    # add_experiment(bench, input_set, '8MB', 8, 4)
 
 for input_set in input_sets:
     add_experiments('blackscholes', input_set)
-    add_experiments('bodytrack', input_set)
-    add_experiments('canneal', input_set)
-    add_experiments('dedup', input_set)
+    # add_experiments('bodytrack', input_set)
+    # add_experiments('canneal', input_set)
+    # add_experiments('dedup', input_set)
     # add_tasks('facesim', input_set)
     # add_tasks('ferret', input_set)
     # add_tasks('fluidanimate', input_set)

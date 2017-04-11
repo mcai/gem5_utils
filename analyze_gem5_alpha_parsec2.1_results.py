@@ -4,9 +4,9 @@ from gem5_utils import parse_result, to_csv, generate_plot
 # Define benchmark names.
 benchmarks = [
     'blackscholes',
-    'bodytrack',
-    'canneal',
-    'dedup',
+    #'bodytrack',
+    #'canneal',
+    #'dedup',
     # 'facesim',
     # 'ferret',
     # 'fluidanimate',
@@ -23,8 +23,9 @@ def parse_results_l2_sizes():
     results = []
 
     for benchmark in benchmarks:
-        for l2_size in ['256kB', '512kB', '1MB', '2MB', '4MB', '8MB']:
+        # for l2_size in ['256kB', '512kB', '1MB', '2MB', '4MB', '8MB']:
         # for l2_size in ['256kB', '512kB']:
+        for l2_size in ['256kB']:
             results.append(
                 parse_result('results/' +
                              benchmark + '/simsmall/' + l2_size + '/8way/4c/',
