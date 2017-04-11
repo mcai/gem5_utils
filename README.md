@@ -8,7 +8,7 @@ Below is the packages required to install on Ubuntu Linux 15.10. Other environme
 
 `sudo apt-get install python3-pip python3-matplotlib python3-pandas python3-seaborn`
 
-`pip3 install objectpath pyparsing pytz` 
+`pip3 install objectpath pyparsing pytz pillow` 
 
 ### Usage
 `gem5_utils.py` is the only Python3 script where gem5_utils resides.
