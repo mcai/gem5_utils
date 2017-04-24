@@ -16,7 +16,7 @@ def run(bench, input_set, l2_size, l2_assoc, num_threads):
     os.system('rm -fr ' + dir)
     os.system('mkdir -p ' + dir)
 
-    cmd_run = '../gem5/build/ALPHA_MESI_Two_Level/gem5.opt -d ' + dir + ' ../gem5/configs/example/fs.py --two-phase --cpu-type=timing --num-cpus=' \
+    cmd_run = '../gem5/build/ALPHA_MESI_Two_Level/gem5.opt -d ' + dir + ' ../gem5/configs/example/fs.py --cpu-type=timing --num-cpus=' \
               + str(num_threads) + ' --script=../gem5_extras/parsec/2.1/run_scripts/' \
               + bench + '_' + str(num_threads) + 'c_' + input_set + '.rcS' \
               + ' --caches --l2cache --num-l2caches=1' \
