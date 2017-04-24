@@ -56,18 +56,24 @@ def add_experiments(bench, input_set):
     # add_experiment(bench, input_set, '4MB', 8, 4)
     # add_experiment(bench, input_set, '8MB', 8, 4)
 
-for input_set in input_sets:
-    add_experiments('blackscholes', input_set)
-    # add_experiments('bodytrack', input_set)
-    # add_experiments('canneal', input_set)
-    # add_experiments('dedup', input_set)
-    # add_tasks('facesim', input_set)
-    # add_tasks('ferret', input_set)
-    # add_tasks('fluidanimate', input_set)
-    # add_tasks('freqmine', input_set)
-    # add_tasks('streamcluster', input_set)
-    # add_tasks('swaptions', input_set)
-    # add_tasks('vips', input_set)
-    # add_tasks('x264', input_set)
+
+benchmarks = [
+    'blackscholes',
+    #'bodytrack',
+    #'canneal',
+    #'dedup',
+    # 'facesim',
+    # 'ferret',
+    # 'fluidanimate',
+    # 'freqmine',
+    # 'streamcluster',
+    # 'swaptions',
+    # 'vips',
+    # 'x264'
+]
+
+for benchmark in benchmarks:
+    for input_set in input_sets:
+        add_experiments(benchmark, input_set)
 
 run_experiments()

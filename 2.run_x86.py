@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# A Python script to run all multi-core experiments for PARSEC 2.1 benchmarks.
+# A Python script to run all multi-core experiments for CPU2006 benchmarks.
 #
 # Copyright (C) Min Cai 2015
 #
