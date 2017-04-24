@@ -1,0 +1,313 @@
+Index: configs/common/cpu2006.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- configs/common/cpu2006.py	(revision )
++++ configs/common/cpu2006.py	(revision )
+@@ -0,0 +1,290 @@
++import os
++
++import m5
++from m5.objects import *
++
++m5.util.addToPath('../common')
++
++spec_dist = os.environ.get('M5_CPU2006', '/dist/m5/cpu2006')
++
++binary_dir = spec_dist
++data_dir = binary_dir
++
++
++# 400.perlbench
++def perlbench():
++    process = LiveProcess()
++    process.cwd = binary_dir + '400.perlbench/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable = process.cwd + 'perlbench_base.amd64-m64-gcc42-nn'
++    process.cmd = [process.executable] + ['-I./lib', 'checkspam.pl', '2500', '5', '25', '11', '150', '1', '1', '1', '1']
++    return process
++
++
++#401.bzip2
++def bzip2():
++    process = LiveProcess()
++    process.cwd = binary_dir + '401.bzip2/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd +'bzip2_base.amd64-m64-gcc42-nn'
++    data = process.cwd+'input.program'
++    process.cmd = [process.executable] + [data, '280']
++    return process
++
++
++#403.gcc
++def gcc():
++    process = LiveProcess()
++    process.cwd = binary_dir + '403.gcc/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable = process.cwd +'gcc_base.amd64-m64-gcc42-nn'
++    data = process.cwd +'166.i'
++    output = process.cwd +'166.s'
++    process.cmd = [process.executable] + [data]+['-o',output]
++    return process
++
++
++#410.bwaves
++def bwaves():
++    process = LiveProcess()
++    process.cwd = binary_dir + '410.bwaves/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd +'bwaves_base.amd64-m64-gcc42-nn'
++    process.cmd = [process.executable]
++    return process
++
++
++#416.gamess
++def gamess():
++    prorcess=LiveProcess()
++    prorcess.cwd = binary_dir + '416.gamess/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    prorcess.executable =  prorcess.cwd + 'gamess_base.amd64-m64-gcc42-nn'
++    prorcess.cmd = [prorcess.executable]
++    prorcess.input= prorcess.cwd + 'cytosine.2.config'
++    return prorcess
++
++
++#429.mcf
++def mcf():
++    process = LiveProcess()
++    process.cwd = binary_dir + '429.mcf/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable = process.cwd +'mcf_base.amd64-m64-gcc42-nn'
++    data = process.cwd+'inp.in'
++    process.cmd = [process.executable] + [data]
++    return process
++
++
++#433.milc
++def milc():
++    process=LiveProcess()
++    process.cwd = binary_dir + '433.milc/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable = process.cwd +'milc_base.amd64-m64-gcc42-nn'
++    stdin=process.cwd +'su3imp.in'
++    process.cmd = [process.executable]
++    process.input=stdin
++    return process
++
++
++#434.zeusmp
++def zeusmp():
++    process=LiveProcess()
++    process.cwd = binary_dir+'434.zeusmp/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable = process.cwd + 'zeusmp_base.amd64-m64-gcc42-nn'
++    process.cmd = [process.executable]
++    return process
++
++
++#435.gromacs
++def gromacs():
++    process = LiveProcess()
++    process.cwd = binary_dir+'435.gromacs/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd +'gromacs_base.amd64-m64-gcc42-nn'
++    data = process.cwd +'gromacs.tpr'
++    process.cmd = [process.executable] + ['-silent','-deffnm',data,'-nice','0']
++    return process
++
++
++#436.cactusADM
++def cactusADM():
++    process = LiveProcess()
++    process.cwd = binary_dir+'436.cactusADM/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd +'cactusADM_base.amd64-m64-gcc42-nn'
++    data = process.cwd+'benchADM.par'
++    process.cmd = [process.executable] + [data]
++    return process
++
++
++# 437.leslie3d
++def leslie3d():
++    process = LiveProcess()
++    process.cwd = binary_dir + '437.leslie3d/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable = process.cwd + 'leslie3d_base.amd64-m64-gcc42-nn'
++    process.cmd = [process.executable]
++    process.input = process.cwd + 'leslie3d.in'
++    return process
++
++
++#444.namd
++def namd():
++    process = LiveProcess()
++    process.cwd = binary_dir + '444.namd/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd +'namd_base.amd64-m64-gcc42-nn'
++    input= process.cwd +'namd.input'
++    process.cmd = [process.executable] + ['--input',input,'--iterations','38','--output','namd.out']
++    return process
++
++
++#445.gobmk
++def gobmk():
++    process=LiveProcess()
++    process.cwd = binary_dir + '445.gobmk/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd +'gobmk_base.amd64-m64-gcc42-nn'
++    stdin= process.cwd +'nngs.tst'
++    process.cmd = [process.executable]+['--quiet','--mode','gtp']
++    process.input=stdin
++    return process
++
++
++# 447.dealII TODO
++
++
++#450.soplex
++def soplex():
++    process=LiveProcess()
++    process.cwd = binary_dir + '450.soplex/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd +'soplex_base.amd64-m64-gcc42-nn'
++    data= process.cwd +'ref.mps'
++    process.cmd = [process.executable]+['-m3500',data]
++    return process
++
++
++#453.povray
++def povray():
++    process=LiveProcess()
++    process.cwd = binary_dir + '453.povray/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd +'povray_base.amd64-m64-gcc42-nn'
++    data = process.cwd +'SPEC-benchmark-ref.ini'
++    process.cmd = [process.executable]+[data]
++    return process
++
++
++#454.calculix
++def calculix():
++    process=LiveProcess()
++    process.cwd = binary_dir + '454.calculix/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd + 'calculix_base.amd64-m64-gcc42-nn'
++    data = process.cwd +'hyperviscoplastic'
++    process.cmd = [process.executable]+['-i',data]
++    return process
++
++
++#456.hmmer
++def hmmer():
++    process=LiveProcess()
++    process.cwd = binary_dir + '456.hmmer/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd +'hmmer_base.amd64-m64-gcc42-nn'
++    data = process.cwd +'retro.hmm'
++    process.cmd = [process.executable]+['--fixed', '0', '--mean', '500', '--num', '500000', '--sd', '350', '--seed', '0', data]
++    return process
++
++
++#458.sjeng
++def sjeng():
++    process=LiveProcess()
++    process.cwd = binary_dir + '458.sjeng/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable = process.cwd +'sjeng_base.amd64-m64-gcc42-nn'
++    data= process.cwd +'ref.txt'
++    process.cmd = [process.executable]+[data]
++    return process
++
++
++#459.GemsFDTD
++def GemsFDTD():
++    process=LiveProcess()
++    process.cwd = binary_dir + '459.GemsFDTD/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd +'GemsFDTD_base.amd64-m64-gcc42-nn'
++    process.cmd = [process.executable]
++    return process
++
++
++#462.libquantum
++def libquantum():
++    process=LiveProcess()
++    process.cwd = binary_dir + '462.libquantum/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd +'libquantum_base.amd64-m64-gcc42-nn'
++    process.cmd = [process.executable],'1397','8'
++    return process
++
++
++#464.h264ref
++def h264ref():
++    process=LiveProcess()
++    process.cwd = binary_dir + '464.h264ref/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd +'h264ref_base.amd64-m64-gcc42-nn'
++    data = process.cwd + 'foreman_ref_encoder_baseline.cfg'
++    process.cmd = [process.executable]+['-d',data]
++    return process
++
++
++#470.lbm
++def lbm():
++    process=LiveProcess()
++    process.cwd = binary_dir + '470.lbm/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd +'lbm_base.amd64-m64-gcc42-nn'
++    data= process.cwd +'100_100_130_ldc.of'
++    process.cmd = [process.executable]+['3000', 'reference.dat', '0', '0' ,data]
++    return process
++
++
++#471.omnetpp
++def omnetpp():
++    process=LiveProcess()
++    process.cwd = binary_dir + '471.omnetpp/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd +'omnetpp_base.amd64-m64-gcc42-nn'
++    data=process.cwd +'omnetpp.ini'
++    process.cmd = [process.executable]+[data]
++    return process
++
++
++#473.astar
++def astar():
++    process=LiveProcess()
++    process.cwd = binary_dir + '473.astar/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd +'astar_base.amd64-m64-gcc42-nn'
++    process.cmd = [process.executable]+['BigLakes2048.cfg']
++    return process
++
++
++#481.wrf
++def wrf():
++    process=LiveProcess()
++    process.cwd = binary_dir + '481.wrf/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd +'wrf_base.amd64-m64-gcc42-nn'
++    process.cmd = [process.executable]+['namelist.input']
++    return process
++
++
++#482.sphinx3
++def sphinx3():
++    process=LiveProcess()
++    process.cwd = binary_dir + '482.sphinx3/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable =  process.cwd +'sphinx_livepretend_base.amd64-m64-gcc42-nn'
++    process.cmd = [process.executable]+['ctlfile', '.', 'args.an4']
++    return process
++
++
++#483.xalancbmk TODO
++
++
++#998.specrand
++def specrand_i():
++    process=LiveProcess()
++    process.cwd = binary_dir + '998.specrand/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable = process.cwd + 'specrand_base.amd64-m64-gcc42-nn'
++    process.cmd = [process.executable] + ['1255432124','234923']
++    return process
++
++
++#999.specrand
++def specrand_f():
++    process=LiveProcess()
++    process.cwd = binary_dir + '999.specrand/run/run_base_ref_amd64-m64-gcc42-nn.0000/'
++    process.executable = process.cwd +'specrand_base.amd64-m64-gcc42-nn'
++    process.cmd = [process.executable] + ['1255432124','234923']
++    return process
+Index: configs/example/se.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- configs/example/se.py	(date 1493013335000)
++++ configs/example/se.py	(revision )
+@@ -62,6 +62,7 @@
+ from common import MemConfig
+ from common.Caches import *
+ from common.cpu2000 import *
++from common.cpu2006 import *
+ 
+ # Check if KVM support has been enabled, we might need to do VM
+ # configuration if that's the case.
