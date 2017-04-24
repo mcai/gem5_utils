@@ -47,13 +47,13 @@ def add_experiment(bench, l2_size, l2_assoc, num_threads):
     experiments.append(args)
 
 
-def add_experiments(bench):
-    add_experiment(bench, '256kB', 8, 4)
-    # add_experiment(bench, '512kB', 8, 4)
-    # add_experiment(bench, '1MB', 8, 4)
-    # add_experiment(bench, '2MB', 8, 4)
-    # add_experiment(bench, '4MB', 8, 4)
-    # add_experiment(bench, '8MB', 8, 4)
+def add_experiments(bench, num_threads):
+    add_experiment(bench, '256kB', 8, num_threads)
+    # add_experiment(bench, '512kB', 8, num_threads)
+    # add_experiment(bench, '1MB', 8, num_threads)
+    # add_experiment(bench, '2MB', 8, num_threads)
+    # add_experiment(bench, '4MB', 8, num_threads)
+    # add_experiment(bench, '8MB', 8, num_threads)
 
 
 benchmarks = [
@@ -84,7 +84,9 @@ benchmarks = [
       #'482.sphinx3'
 ]
 
+num_threads = 4
+
 for benchmark in benchmarks:
-    add_experiments(benchmark)
+    add_experiments([benchmark] * num_threads, num_threads)
 
 run_experiments()
