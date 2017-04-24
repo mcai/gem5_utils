@@ -19,7 +19,7 @@ def run(bench, l2_size, l2_assoc, num_threads):
 
     cmd_run = '../gem5/build/X86_MESI_Two_Level/gem5.opt -d ' + dir + ' ../gem5/configs/example/se.py --cpu-type=timing --num-cpus=' \
               + str(num_threads) + ' --fast-forward=200000000 --maxinsts=2000000000' \
-              + ' --bench=' + bench \
+              + ' --bench=' + '-'.join(bench) \
               + ' --caches --l2cache --num-l2caches=1' \
               + ' --l1d_size=32kB --l1i_size=32kB --l2_size=' + l2_size + ' --l2_assoc=' + str(l2_assoc)
     print(cmd_run)
